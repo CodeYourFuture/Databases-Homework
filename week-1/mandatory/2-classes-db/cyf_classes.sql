@@ -1,3 +1,4 @@
+-- Task 2 & 3
 CREATE TABLE mentors (
   id                              SERIAL PRIMARY KEY,
   name                            VARCHAR(30) NOT NULL,
@@ -6,6 +7,7 @@ CREATE TABLE mentors (
   fav_programming_lang            VARCHAR(120) NOT NULL
 );
 
+-- Task 4 & 5
 CREATE TABLE students (
   id                              SERIAL PRIMARY KEY,
   name                            VARCHAR(30) NOT NULL,
@@ -13,6 +15,7 @@ CREATE TABLE students (
   cyf_graduate                    BOOLEAN NOT NULL
 );
 
+-- Task 7 & 8
 CREATE TABLE classes (
   id               SERIAL PRIMARY KEY,
   leading_mentor   INT REFERENCES mentors(id) NOT NULL,
@@ -21,6 +24,7 @@ CREATE TABLE classes (
   class_location         VARCHAR(120)
 );
 
+-- Task 9
 CREATE TABLE attendance (
     id               SERIAL PRIMARY KEY,
     class_id         INT REFERENCES classes(id) NOT NULL,
@@ -57,13 +61,10 @@ INSERT INTO attendance (class_id, student_id, topic) VALUES (2, 3, 'NodeJS');
 INSERT INTO attendance (class_id, student_id, topic) VALUES (3, 5, 'NodeJS');
 INSERT INTO attendance (class_id, student_id, topic) VALUES (4, 8, 'Javascript');
 
--- WRONG ONE ----
--- CREATE TABLE classes (
---   id               SERIAL PRIMARY KEY,
---   student_id       INT REFERENCES students(id),
---   mentor_id        INT REFERENCES mentors(id),
---   leading_mentor   VARCHAR(120) NOT NULL,
---   topic            VARCHAR(120) NOT NULL,
---   class_date             DATE NOT NULL,
---   class_location         VARCHAR(120)
--- );
+-- Task 10
+SELECT * FROM mentors WHERE years_in_glasgow > 5;
+SELECT * FROM mentors WHERE fav_programming_lang = 'Java';
+SELECT * FROM students WHERE cyf_graduate = 'true';
+SELECT * FROM classes WHERE class_date < '2020-06-01';
+SELECT * FROM attendance WHERE topic = 'NodeJS';
+SELECT * FROM classes WHERE topic = 'Javascript';
