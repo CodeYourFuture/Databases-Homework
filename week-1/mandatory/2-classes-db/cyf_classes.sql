@@ -66,5 +66,6 @@ SELECT * FROM mentors WHERE years_in_glasgow > 5;
 SELECT * FROM mentors WHERE fav_programming_lang = 'Java';
 SELECT * FROM students WHERE cyf_graduate = 'true';
 SELECT * FROM classes WHERE class_date < '2020-06-01';
-SELECT * FROM attendance WHERE topic = 'NodeJS';
-SELECT * FROM classes WHERE topic = 'Javascript';
+SELECT * FROM attendance WHERE topic = 'Javascript'; 
+-- OR
+SELECT student_id, classes.topic FROM attendance            INNER JOIN classes ON attendance.class_id = classes.id WHERE classes.topic = 'Javascript';
