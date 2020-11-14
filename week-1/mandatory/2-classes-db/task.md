@@ -32,7 +32,7 @@ address,
 language
  ) VALUES ('Martin','7','12 Down Street','Node.js');
 
-yf_classes=# INSERT INTO mentors (
+INSERT INTO mentors (
 name,
 years_in_glasgow,
 address,
