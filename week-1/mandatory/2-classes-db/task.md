@@ -6,7 +6,41 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 
 To submit this homework write the correct commands for each question here:
 
+
 ```sql
+1)
+createdb cyf_classes
+psql cyf_classes
+
+2)CREATE TABLE mentors (id SERIAL PRIMARY KEY, name VARCHAR(20), glasgow INT, address VARCHAR(30), language VARCHAR(20));
+
+3.)//(enter this line 5 times with different values)
+INSERT INTO mentors ( name, glasgow, address, language) VALUES ('john snow', 5, '100 winterfell rd', 'javascript'); 
+
+4)CREATE TABLE students (name VARCHAR(20), address VARCHAR(30), cyfgraduate VARCHAR(10);
+
+5.)//(enter 10 times for 10 data entries)
+INSERT INTO students(name, address, cyfgraduate) VALUES ('charles dickens', '19 dolman rd', 'yes');
+
+6)SELECT * FROM students;
+
+7)CREATE TABLE classes (mentor VARCHAR(20), topic VARCHAR(15), time DATE, location VARCHAR(20));
+
+8.//enter a few different values
+INSERT INTO classes (mentor, topic, time, location) VALUES ('john snow', 'javascript', '2020-11-11', 'birmingham');
+
+9) create a id column in students and create a students_ids column in mentors table and reference students(id) to solve the issue.
+
+
+10.1)SELECT * FROM mentors WHERE GLASGOW > 5 ;
+10.2)SELECT * FROM mentors WHERE language = 'javascript' ;
+10.3) SELECT * FROM students WHERE cyfgraduate = 'yes' ;
+10.4)SELECT * FROM classes WHERE time < '2020-06-01' ;
+10.5)SELECT student_ids, topic FROM classes WHERE student_ids > 0  ;
+
+
+
+
 
 
 ```
