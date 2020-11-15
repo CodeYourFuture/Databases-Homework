@@ -137,7 +137,7 @@ SELECT * FROM students WHERE cyf_student = 'true';
 
 SELECT * FROM classes  WHERE date <= '2020-12-01';
 // Retrieve all the students who attended the python class
-SELECT student_id  FROM attendings  WHERE class_id  = '1';
+SELECT name FROM students, classes, attendings WHERE students.id = attendings.student_id AND classes.topic = 'python' AND attendings.class_id = classes.id; 
 
 ```
 
