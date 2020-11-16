@@ -7,8 +7,58 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+1. createdb cyf_classes;
 
+2. CREATE TABLE mentors (
+   id             SERIAL PRIMARY KEY, 
+   name           VARCHAR(30) NOT NULL, 
+   years          INT, 
+   address        VARCHAR(120), 
+   prog_language  VARCHAR(20) NOT NULL 
+   );
 
+3. INSERT INTO mentors (name, years, address, prog_language) VALUES('Shukri Ali', 5, 'West Midlands, Glassgow', 'Java');
+   INSERT INTO mentors (name, years, address, prog_language) VALUES('Nadir Khan', 3, 'East Midlands, Glassgow', 'JavaScript');
+   INSERT INTO mentors (name, years, address, prog_language) VALUES('Emile Paffard-Wray', 10, 'South Midlands, Glasgow', 'React');
+   INSERT INTO mentors (name, years, address, prog_language) VALUES('Wahab Rehman', 8, 'North Midlands, Glasgow', 'React');
+   INSERT INTO mentors (name, years, address, prog_language) VALUES('Mark Farmiloe', 15, 'Great Midlands, Glassgow', 'SQL');
+
+4. CREATE TABLE students (
+   id       SERIAL PRIMARY KEY, 
+   name     VARCHAR(30) NOT NULL, 
+   address  VARCHAR(120), 
+   graduate BOOLEAN NOT NULL 
+   );
+
+5. INSERT INTO students (name, address, graduate) VALUES('Hadiyah Lawal', 'West Midlands, Birmingham', false);
+   INSERT INTO students (name, address, graduate) VALUES('Sonjide Hussain', 'Clarkson, London', true);
+   INSERT INTO students (name, address, graduate) VALUES('Omolola Bello', 'Smethwick, Birmingham', false);
+   INSERT INTO students (name, address, graduate) VALUES('Cynthia Eburu', 'Chaltam House, London', true);
+   INSERT INTO students (name, address, graduate) VALUES('Min ko', 'Cape Town, South-Africa', true);
+   INSERT INTO students (name, address, graduate) VALUES('Zubeda Khanum', 'Green Lane, Birmingham', false);
+   INSERT INTO students (name, address, graduate) VALUES('Adebola Alaba-Ige', 'Coventry, Birmingham', false);
+   INSERT INTO students (name, address, graduate) VALUES('Gintaras Stankus', 'Solihull Quarters, Birmingham', false);
+   INSERT INTO students (name, address, graduate) VALUES('Ellie Tahmasebi', 'Alexandra Avenue, London', true);
+   INSERT INTO students (name, address, graduate) VALUES('Denis Peptanariu', 'Egbaston Avenue, Birmingham', false);
+
+6. SELECT * FROM mentors;
+   SELECT * FROM students;
+
+7. CREATE TABLE classes (
+   id             SERIAL PRIMARY KEY, 
+   leading_mentor VARCHAR(30) NOT NULL, 
+   module         VARCHAR(30) NOT NULL, 
+   location       VARCHAR(30) NOT NULL, 
+   date           DATE NOT NULL 
+   );
+
+8. INSERT INTO classes (leading_mentor, module, location, date) VALUES('Cemil Okay', 'HTML/CSS', 'Aston University, Birmingham',    '2020-04-25');
+   INSERT INTO classes (leading_mentor, module, location, date) VALUES('Wahab Rehman', 'JavaScript', 'Zoom Online class', '2020-05-28');
+   INSERT INTO classes (leading_mentor, module, location, date) VALUES('Andy Delaney', 'React', 'Zoom Online class', '2020-06-30');
+   INSERT INTO classes (leading_mentor, module, location, date) VALUES('Nick Holdsworth', 'Node.js', 'Zoom Online class', '2020-07-31');
+   INSERT INTO classes (leading_mentor, module, location, date) VALUES('Mark Farmiloe', 'SQL', 'Zoom Online class', '2020-09-02');
+   
+9. 
 ```
 
 When you have finished all of the questions - open a pull request with your answers to the `Databases-Homework` repository.
