@@ -8,6 +8,20 @@ To submit this homework write the correct commands for each question here:
 
 ```sql
 
+//CREATE DATABASE 
+createdb -p 5432 -U postgres cyf_classes
+
+//LOG IN TO DATABASE
+psql cyf_classes
+
+//CREATE mentors TABLE
+
+CREATE TABLE mentors ( 
+id SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+address VARCHAR(120),
+years_in_Glascow INT NOT NULL,
+fav_prog_language VARCHAR(30));
 
 ```
 
