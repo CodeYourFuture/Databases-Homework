@@ -1,5 +1,6 @@
 -- 1
--- createdb cyf_classes;
+-- first execute "createdb cyf_classes" in the terminal
+-- then "psql -d cyf_classes -f solutions.sql" to automatically run below commands
 
 -- 2
 CREATE TABLE mentors (
