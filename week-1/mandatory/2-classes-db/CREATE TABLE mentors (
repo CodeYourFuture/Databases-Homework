@@ -1,0 +1,9 @@
+CREATE TABLE mentors (
+  id        SERIAL PRIMARY KEY,
+  name      VARCHAR(30) NOT NULL,
+  email     VARCHAR(120) NOT NULL,
+  address   VARCHAR(120),
+  city      VARCHAR(30),
+  postcode  VARCHAR(12),
+  country   VARCHAR(20)
+);
