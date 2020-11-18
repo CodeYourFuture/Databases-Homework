@@ -20,3 +20,11 @@ INSERT INTO mentors (name, years, address, favourite_language)
     ('Atanas', 27, '123 Creative Street', 'Javascript');
 
 --4--
+CREATE TABLE students (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  address VARCHAR(120) NOT NULL,
+  graduated BOOLEAN DEFAULT false
+);
+
+--5 --
