@@ -54,3 +54,14 @@ CREATE TABLE classes (
 );
 
 --8--
+
+INSERT INTO classes (mentor, topic, date, location)
+  VALUES
+    (1, 'React', '2020-11-17', 'London'),
+    (2, 'Javascript', '2020-12-17', 'Birmingham'),
+    (3, 'Python', '2020-11-27', 'Manchester'),
+    (1, 'HTML', '2020-05-21', 'London'),
+    (4, 'Java', '2020-12-03', 'Glasgow'),
+    (5, 'CSS', '2020-12-25', 'Roma');
+
+--9--
