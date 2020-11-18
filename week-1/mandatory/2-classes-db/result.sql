@@ -28,3 +28,15 @@ CREATE TABLE students (
 );
 
 --5 --
+
+INSERT INTO students (name, address, graduated)
+  VALUES
+    ('Mursel Aysan', '37 New Buery Road,Birmingham', false),
+    ('Ekip Kalir', '34 Abbey Road ,Leeds', false),
+    ('Deniz Ari', '97 Fallen Road , Manchaster', true),
+    ('Hadiyah Lawal', '89 oldbury Road , Sandwell', false),
+    ('Adebola ', '78 newcastle Road , Newcastle', false),
+    ('Nouri Hachemi', '45 hungery Road , Cambridge', true),
+    ('Hiba Mohammed', '57 justeat Road , solihull', true);
+
+--6--
