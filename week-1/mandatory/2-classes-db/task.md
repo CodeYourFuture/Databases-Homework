@@ -35,3 +35,7 @@ When you have finished all of the questions - open a pull request with your answ
     - Retrieve all the students who are CYF graduates
     - Retrieve all the classes taught before June this year
     - Retrieve all the students (retrieving student ids only is fine) who attended the Javascript class (or any other class that you have in the `classes` table).
+
+
+// ALL HOMEWORK DONE //   type your terminal 
+/// psql -d cyf_classes -f ./result.sql
