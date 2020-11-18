@@ -70,3 +70,19 @@ CREATE TABLE lessons (
   student_id INT REFERENCES students(id),
   classes_id INT REFERENCES classes(id)
 );
+--10--
+
+INSERT INTO lessons (student_id, classes_id)
+  VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 1),
+    (2, 5),
+    (4, 3),
+    (9, 2),
+    (8, 2),
+    (10,4),
+    (7, 2),
+    (7, 1),
+    (7, 5);
