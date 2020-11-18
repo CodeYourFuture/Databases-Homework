@@ -10,11 +10,11 @@ To submit this homework write the correct commands for each question here:
 1. createdb cyf_classes;
 
 2. CREATE TABLE mentors (
-   id             SERIAL PRIMARY KEY, 
-   name           VARCHAR(30) NOT NULL, 
-   years          INT, 
-   address        VARCHAR(120), 
-   prog_language  VARCHAR(20) NOT NULL 
+   id             SERIAL PRIMARY KEY,
+   name           VARCHAR(30) NOT NULL,
+   years          INT,
+   address        VARCHAR(120),
+   prog_language  VARCHAR(20) NOT NULL
    );
 
 3. INSERT INTO mentors (name, years, address, prog_language) VALUES('Shukri Ali', 5, 'West Midlands, Glassgow', 'Java');
@@ -24,10 +24,10 @@ To submit this homework write the correct commands for each question here:
    INSERT INTO mentors (name, years, address, prog_language) VALUES('Mark Farmiloe', 15, 'Great Midlands, Glassgow', 'SQL');
 
 4. CREATE TABLE students (
-   id       SERIAL PRIMARY KEY, 
-   name     VARCHAR(30) NOT NULL, 
-   address  VARCHAR(120), 
-   graduate BOOLEAN NOT NULL 
+   id       SERIAL PRIMARY KEY,
+   name     VARCHAR(30) NOT NULL,
+   address  VARCHAR(120),
+   graduate BOOLEAN NOT NULL
    );
 
 5. INSERT INTO students (name, address, graduate) VALUES('Hadiyah Lawal', 'West Midlands, Birmingham', false);
@@ -45,11 +45,11 @@ To submit this homework write the correct commands for each question here:
    SELECT * FROM students;
 
 7. CREATE TABLE classes (
-   id             SERIAL PRIMARY KEY, 
-   leading_mentor VARCHAR(30) NOT NULL, 
-   module         VARCHAR(30) NOT NULL, 
-   location       VARCHAR(30) NOT NULL, 
-   date           DATE NOT NULL 
+   id             SERIAL PRIMARY KEY,
+   leading_mentor VARCHAR(30) NOT NULL,
+   module         VARCHAR(30) NOT NULL,
+   location       VARCHAR(30) NOT NULL,
+   date           DATE NOT NULL
    );
 
 8. INSERT INTO classes (leading_mentor, module, location, date) VALUES('Cemil Okay', 'HTML/CSS', 'Aston University, Birmingham',    '2020-04-25');
@@ -57,8 +57,26 @@ To submit this homework write the correct commands for each question here:
    INSERT INTO classes (leading_mentor, module, location, date) VALUES('Andy Delaney', 'React', 'Zoom Online class', '2020-06-30');
    INSERT INTO classes (leading_mentor, module, location, date) VALUES('Nick Holdsworth', 'Node.js', 'Zoom Online class', '2020-07-31');
    INSERT INTO classes (leading_mentor, module, location, date) VALUES('Mark Farmiloe', 'SQL', 'Zoom Online class', '2020-09-02');
-   
-9. 
+
+9. CREATE TABLE javascript (
+   id             SERIAL PRIMARY KEY,
+   student_id     INT REFERENCES students(id),
+   class_id       INT REFERENCES classes(id)
+   );
+
+   INSERT INTO javascript (student_id, class_id) VALUES (3, 2);
+   INSERT INTO javascript (student_id, class_id) VALUES (4, 2);
+   INSERT INTO javascript (student_id, class_id) VALUES (6, 2);
+   INSERT INTO javascript (student_id, class_id) VALUES (7, 2);
+   INSERT INTO javascript (student_id, class_id) VALUES (9, 2);
+   INSERT INTO javascript (student_id, class_id) VALUES (10, 2);
+
+
+10. SELECT * FROM mentors WHERE years > 5;
+    SELECT * FROM mentors WHERE prog_language = 'JavaScript';
+    SELECT * FROM students WHERE graduate = true;
+    SELECT * FROM classes WHERE date < '2020/06/01';
+    SELECT stu.name, stu.id, cla.leading_mentor FROM students stu,classes cla, javascript jav  WHERE stu.id = student_id AND cla.id =class_id;
 ```
 
 When you have finished all of the questions - open a pull request with your answers to the `Databases-Homework` repository.
