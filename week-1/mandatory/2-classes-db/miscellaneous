@@ -1,0 +1,26 @@
+DROP TABLE classes;
+
+UPDATE react
+SET id =1
+WHERE class_ID = 5;
+
+
+UPDATE classes
+SET leading_mentor = 'Yusuf Farah'
+WHERE leading_mentor = 'Yusuf Ali';
+
+UPDATE students
+SET name = 'Jacques Vertommen'
+WHERE name = 'Jacques Vertomme';
+
+UPDATE mentors
+SET name = 'Yusuf Farah'
+WHERE name = 'Yusuf Ali';
+
+UPDATE classes
+SET module = 'React'
+WHERE module = 'HTML';
+SELECT name, yrs_glasglow FROM mentors WHERE yrs_glasglow > 5;
+ 
+
+DELETE FROM react WHERE student_id =1;
