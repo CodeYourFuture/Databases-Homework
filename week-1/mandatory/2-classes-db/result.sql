@@ -40,3 +40,17 @@ INSERT INTO students (name, address, graduated)
     ('Hiba Mohammed', '57 justeat Road , solihull', true);
 
 --6--
+
+SELECT * FROM students;
+
+--7--
+
+CREATE TABLE classes (
+  id SERIAL PRIMARY KEY,
+  mentor INT REFERENCES mentors(id),
+  topic VARCHAR(60) NOT NULL,
+  date DATE NOT NULL,
+  location VARCHAR(120) NOT NULL
+);
+
+--8--
