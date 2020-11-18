@@ -65,3 +65,8 @@ INSERT INTO classes (mentor, topic, date, location)
     (5, 'CSS', '2020-12-25', 'Roma');
 
 --9--
+CREATE TABLE lessons (
+  id SERIAL PRIMARY KEY,
+  student_id INT REFERENCES students(id),
+  classes_id INT REFERENCES classes(id)
+);
