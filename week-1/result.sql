@@ -13,11 +13,11 @@ CREATE TABLE mentors (
 --3--
 INSERT INTO mentors (name, years, address, favourite_language)
   VALUES
-    ('Wahab Rahman', 22, '123 New Street, Birmingham', 'React'),
-    ('Emile Pawfard', 22, '123 White House', 'TypeScript'),
-    ('Nick Todsman ', 54, 'Capgemini, Telford', 'Python'),
-    ('Shukri', 22, '123 Moor Street', 'Java'),
-    ('Atanas', 27, '123 Creative Street', 'Javascript');
+    ('Wahab Rahman', 22, 'Birmingham', 'React'),
+    ('Emile Pawfard', 22, 'Glasgow', 'TypeScript'),
+    ('Nick Todsman ', 54, 'London', 'Python'),
+    ('Shukri', 22, 'Glasgow', 'Java'),
+    ('Atanas', 27, 'Bristol', 'Javascript');
 
 --4--
 CREATE TABLE students (
@@ -70,7 +70,7 @@ CREATE TABLE lessons (
   student_id INT REFERENCES students(id),
   classes_id INT REFERENCES classes(id)
 );
---10--
+
 
 INSERT INTO lessons (student_id, classes_id)
   VALUES
@@ -86,3 +86,13 @@ INSERT INTO lessons (student_id, classes_id)
     (7, 2),
     (7, 1),
     (7, 5);
+
+    --10--
+
+SELECT * FROM mentors WHERE years > 5 AND address = 'Glasgow';
+
+SELECT * FROM mentors WHERE favourite_language = 'Javascript';
+
+SELECT * FROM students WHERE graduated = true;
+
+SELECT * FROM classes WHERE date < '2020-06-01';
