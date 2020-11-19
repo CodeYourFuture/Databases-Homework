@@ -95,6 +95,26 @@ UPDATE students SET classes_id = 4 WHERE id = 7;
 UPDATE students SET classes_id = 3 WHERE id = 8;
 UPDATE students SET classes_id = 5 WHERE id = 9;
 UPDATE students SET classes_id = 2 WHERE id = 10;
+
+//Retrieve all the mentors who lived more than 5 years in Glasgow
+
+SELECT * FROM mentors WHERE years_in_glascow > 5;
+
+//Retrieve all the mentors whose favourite language is Javascript
+
+SELECT * FROM mentors WHERE fav_prog_language = 'Javascript';
+
+//Retrieve all the students who are CYF graduates
+
+SELECT * FROM classes WHERE course_date < '2020-06-01';
+
+//Retrieve all the students (retrieving student ids only is fine) who attended the Javascript class 
+
+SELECT * FROM students WHERE classes_id = 2;
+SELECT id FROM students WHERE classes_id = 2;
+
+
+
 ```
 
 When you have finished all of the questions - open a pull request with your answers to the `Databases-Homework` repository.
