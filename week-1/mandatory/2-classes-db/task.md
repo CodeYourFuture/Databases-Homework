@@ -35,3 +35,70 @@ When you have finished all of the questions - open a pull request with your answ
     - Retrieve all the students who are CYF graduates
     - Retrieve all the classes taught before June this year
     - Retrieve all the students (retrieving student ids only is fine) who attended the Javascript class (or any other class that you have in the `classes` table).
+
+SELECT * FROM mentors WHERE years >5;
+SELECT * FROM mentors WHERE language='Javascript';
+SELECT * FROM students WHERE graduation;
+SELECT * FROM classes WHERE date<'2020-06-01';
+SELECT student_id FROM classes INNER JOIN attendances ON classes.id=attendances.class_id WHERE topic='HTML';
+
+
+CREATE TABLE mentors (
+  id        SERIAL PRIMARY KEY,
+   name      VARCHAR(30) NOT NULL,
+address   VARCHAR(120),
+  years     INT NOT NULL,
+  language   VARCHAR(20)
+);
+CREATE TABLE students (
+  id        SERIAL PRIMARY KEY,
+  name      VARCHAR(30) NOT NULL,
+  address   VARCHAR(120),
+  graduation BOOLEAN NOT NULL
+);
+
+CREATE TABLE classes (
+  id               SERIAL PRIMARY KEY,
+  mentor_id      INT REFERENCES mentors(id),
+  location   VARCHAR(120),
+  date     DATE NOT NULL,
+  topic        VARCHAR(60)
+);
+
+CREATE TABLE attendances (
+    id        SERIAL PRIMARY KEY,
+    student_id  INT REFERENCES students(id),
+    class_id  INT REFERENCES classes(id)
+
+);
+INSERT INTO attendances (student_id,class_id) VALUES (1,4);
+INSERT INTO attendances (student_id,class_id) VALUES (2,3);
+INSERT INTO attendances (student_id,class_id) VALUES (3,2);
+INSERT INTO attendances (student_id,class_id) VALUES (1,2);
+INSERT INTO attendances (student_id,class_id) VALUES (2,1);
+
+
+INSERT INTO mentors (name,  address, years , language) VALUES ('John Smith','11 New Road',3,'javascript');
+INSERT INTO mentors (name,  address, years , language) VALUES ('NICK','11 HILL Road',2,'PYHTON');
+INSERT INTO mentors (name,  address, years , language) VALUES ('CLAIRE','17 ROCK Road',5,'java');
+INSERT INTO mentors (name,  address, years , language) VALUES ('EMILE','18 HALL Road',4,'csharp');
+INSERT INTO mentors (name,  address, years , language) VALUES ('SIMON','15 SOUTH Road',1,'scala');
+
+INSERT INTO students (name,  address, graduation) VALUES ('SIMON','19 SOUTH Road',TRUE);
+INSERT INTO students (name,  address, graduation) VALUES ('EBENEZER','14 SOUTH Road',FALSE);
+INSERT INTO students (name,  address, graduation) VALUES ('SADAT','5 SOUTH Road',TRUE);
+INSERT INTO students (name,  address, graduation) VALUES ('GINTARAS','115 SOUTH Road',TRUE);
+INSERT INTO students (name,  address, graduation) VALUES ('HIBA','10 SOUTH Road',FALSE);
+INSERT INTO students (name,  address, graduation) VALUES ('SELINA','65 SOUTH Road',TRUE);
+INSERT INTO students (name,  address, graduation) VALUES ('HADIYAH','75 SOUTH Road',TRUE);
+INSERT INTO students (name,  address, graduation) VALUES ('PATRICK','35 SOUTH Road',FALSE);
+INSERT INTO students (name,  address, graduation) VALUES ('ALI','25 SOUTH Road',TRUE);
+INSERT INTO students (name,  address, graduation) VALUES ('NICK','95 SOUTH Road',TRUE);
+
+
+INSERT INTO classes (mentor_id, topic, location, date)  VALUES (1 , 'HTML','MIDLAND','2020-06-03');
+INSERT INTO classes (mentor_id,topic,location, date)  VALUES (2 , 'HTML','MIDLAND','2020-05-03');
+INSERT INTO classes (mentor_id,topic,location, date)  VALUES ( 3 , 'JAVASCRIPT','MIDLAND','2020-09-03');
+INSERT INTO classes (mentor_id, topic,location, date)  VALUES ( 4, 'JAVA','MIDLAND','2020-06-07');
+INSERT INTO classes (mentor_id, topic, location, date)  VALUES ( 3 , 'CSS','MIDLAND','2020-10-03');
+
