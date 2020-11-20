@@ -6,10 +6,61 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 
 To submit this homework write the correct commands for each question here:
 
-```sql
+<!-- ```sql -->
+ 1:create database cyf_classes;
+ 2:create table mentor( id SERIAL PRIMARY KEY,name VARCHAR(30) NOT NULL,duration int NOT NULL,city VARCHAR(30) NOT NULL,address VARCHAR(100) NOT NULL,favouriteProgramingLanguage VARCHAR(30) NOT NULL);
+ 3:insert into mentor(id,name,duration,city,address,favouriteProgramingLanguage)values(0,'zubeda',4,'birmingham','abc raod ','javascript');
+ insert into mentor(id,name,duration,city,address,favouriteProgramingLanguage)values(1,'hadeesa',40,'islamabad','abc raod ','c++');
+ insert into mentor(id,name,duration,city,address,favouriteProgramingLanguage)values(2,'Akeelsa',7,'oindi','abc raod ','c++');
+ insert into mentor(id,name,duration,city,address,favouriteProgramingLanguage)values(3,'salina',3,'pindi','abc raod ','pascl');
+insert into mentor(id,name,duration,city,address,favouriteProgramingLanguage)values(4,'hiba',6,'pindi','abc raod ','pascl');
+4:create table student(id SERIAL PRIMARY KEY,name VARCHAR(30) NOT NULL,graduated VARCHAR(50));
+5:insert into student(id,name,graduated)values(0,'zubeda','cyf');
+insert into student(id,name,graduated)values(1,'hadiya','cyf');
+insert into student(id,name,graduated)values(2,'shukrii','cyf');
+insert into student(id,name,graduated)values(3,'hibba','cyf');
+insert into student(id,name,graduated)values(4,'salina','cyf');
+insert into student(id,name,graduated)values(5,'Clair','university of birmingham');
+insert into student(id,name,graduated)values(6,'Genady','university of birmingham');
+insert into student(id,name,graduated)values(7,'leaory','university of london');
+ insert into student(id,name,graduated)values(8,'AISHA','university of london');
+ insert into student(id,name,graduated)values(9,'lola','university of london');
+6:select * from student;
+   select * from mentors;
+7:create table classes(id SERIAL PRIMARY KEY,name VARCHAR(30),mentor_id INT REFERENCES mentors(id),topic VARCHAR(50),date DATE,location VARCHAR(30) NOT NULL);
+8:insert into classes(id,name,mentor_id,topic,date,location)values(0,'class1',0,'javascript','11/6/2020','Birmingham');
+insert into classes(id,name,mentor_id,topic,date,location)values(1,'class2',1,'html','11/4/2020','London');
+insert into classes(id,name,mentor_id,topic,date,location)values(2,'class1',0,'html','11/3/2020','London');
+9:create table class_student(student_id INT REFERENCES student(id),class_id INT REFERENCES classes(id));
+insert into class_student(student_id,class_id)values(0,1)
+insert into class_student(student_id,class_id)values(1,0);
+
+10:
+Retrieve all the mentors who lived more than 5 years in Glasgow.?
+select * from mentor where duration>5;
+
+Retrieve all the mentors whose favourite language is Javascript.?
+select * from mentor where favouriteprograminglanguage='javascript';
+
+Retrieve all the students who are CYF graduates.?
+select * from student where graduated='cyf';
+
+Retrieve all the classes taught before June this year.?
+select * from classes where date<'2020-06-11';
+
+Retrieve all the students (retrieving student ids only is fine) who attended the Javascript class (or any other class that you have in the `classes` table).?
+
+select student_id from class_student where class_id=(select id from classes where topic='javascript');
 
 
-```
+
+
+
+
+
+
+<!-- 
+``` -->
 
 When you have finished all of the questions - open a pull request with your answers to the `Databases-Homework` repository.
 
