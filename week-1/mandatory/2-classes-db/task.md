@@ -42,8 +42,8 @@ To submit this homework write the correct commands for each question here:
    INSERT INTO students (name, address, graduated) VALUES ('Student 9', '13 High Road', true);
    INSERT INTO students (name, address, graduated) VALUES ('Student 10', '14 High Road', false);
 
-6. SELECT _ FROM mentors;
-   SELECT _ FROM students;
+6. SELECT * FROM mentors;
+   SELECT * FROM students;
 
 7. CREATE TABLE classes (
    id SERIAL PRIMARY KEY,
@@ -83,11 +83,11 @@ To submit this homework write the correct commands for each question here:
    (2, 4);
 
 10.
-   SELECT \* FROM mentors WHERE years_in_glasgow >5;
-   SELECT \* FROM mentors WHERE favourite_programme_lang = 'Javascript';
-   SELECT \* FROM students WHERE graduated = true;
-   SELECT \* FROM classes WHERE date < '2020-06-01';
-   SELECT \* FROM attendance WHERE classes_id = 1;
+   SELECT * FROM mentors WHERE years_in_glasgow >5;
+   SELECT * FROM mentors WHERE favourite_programme_lang = 'Javascript';
+   SELECT * FROM students WHERE graduated = true;
+   SELECT * FROM classes WHERE date < '2020-06-01';
+   SELECT * FROM attendance WHERE classes_id = 1;
 
 
 ```
