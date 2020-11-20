@@ -7,6 +7,78 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+1. CREATEDB cyf_classes;
+2. CREATE TABLE mentors (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(40) NOT NULL,
+  yearsInGlasgow INTEGER NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  programmingLanguage VARCHAR(40) NOT NULL
+ );
+ 3. INSERT INTO mentors 
+(name, yearsInGlasgow, address, programmingLanguage)
+VALUES 
+('Patrick', 5, 'Manchester road', 'Matlab'),
+('Osagie', 1, 'Birmingham road', 'C++'),
+('Atanas', 7, 'Coventry road', 'Ruby'),
+('Lola', 3, 'London road', 'SQL'),
+('Gabriel', 2, 'Warwick road', 'Java');
+4. CREATE TABLE students (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(40) NOT NULL,
+  address VARCHAR(40) NOT NULL,
+  graduated BOOLEAN NOT NULL
+);
+5. INSERT INTO students (name, address, graduated)
+VALUES ('Denis', 'Denis road', TRUE),
+			 ('Deniz', 'Deniz road', TRUE),
+       ('Mursel', 'Mursel road', TRUE),
+       ('Islam', 'Islam road', TRUE),
+       ('Hiba', 'Hiba road', TRUE),
+       ('Hadiya', 'Hadiya road', TRUE),
+       ('Ebeneze', 'Ebeneze road', TRUE),
+       ('Leroy', 'Leroy road road', TRUE),
+       ('Ekip', 'Ekip road', TRUE),
+       ('Gennady', 'Gennady road', TRUE);
+6. SELECT * FROM mentors;
+   SELECT * FROM students;
+7. CREATE TABLE classes (
+  id SERIAL PRIMARY KEY,
+  leading_mentor VARCHAR(40),
+  topic VARCHAR(40),
+  date DATE NOT NULL,
+  location VARCHAR(40)
+  );
+8. INSERT INTO classes 
+(leading_mentor, topic, date, location)
+VALUES ('Atanas', 'Personal development','2020-11-11' ,'Birmingham'),
+			 ('Marcin', 'Node.js', '2020-12-12', 'Birmingham'),
+       ('Emile', 'Javascript', '2020-11-21', 'London'),
+       ('Wahab', 'React.js', '2020-10-10', 'Manchester');
+9. <!--We have to link  students table to classes tables, in our case we have a many to many relationship so we need to create a new table students_classes to link them.-->
+   CREATE TABLE students_classes (
+  id SERIAL PRIMARY KEY,
+  student_id INTEGER REFERENCES students(id),
+  class_id INT REFERENCES classes(id)
+);
+INSERT INTO students_classes (student_id, class_id)
+VALUES (1, 2), (1, 3),(2, 4),(2, 1), (4, 2);
+
+10. SELECT * FROM mentors WHERE yearsInGlasgow > 5;
+    SELECT * FROM mentors WHERE programmingLanguage = 'Javascript';
+    SELECT * FROM students WHERE graduated IN(TRUE);
+    SELECT * FROM classes WHERE date < '2020-06-01';
+    SELECT DISTINCT students.name, topic 
+      FROM classes
+      JOIN students_classes
+      ON class_id =classes.id
+      JOIN  students
+      ON student_id = students.id
+      WHERE topic = 'Javascript';
+
+
+
+    
 
 
 ```
