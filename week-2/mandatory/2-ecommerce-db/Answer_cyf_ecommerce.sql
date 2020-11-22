@@ -220,7 +220,7 @@ cyf_ecommerce=# SELECT products.product_name, products.unit_price, order_items.q
  Super warm socks |         10 |        3
 (4 rows)
 
-cyf_ecommerce=# SELECT orders.order_date, orders.order_reference, customers.name, suppliers.supplier_name, order_items.quantity FROM products, orders, order_items, suppliers, customers WHERE customers.id = orders.customer_id AND suppliers.id = products.supplier_id AND products.id = order_items.product_id AND orders.id = order_items.order_id;
+(cyf_ecommerce=# SELECT orders.order_date, orders.order_reference, customers.name, suppliers.supplier_name, order_items.quantity FROM products, orders, order_items, suppliers, customers WHERE customers.id = orders.customer_id AND suppliers.id = products.supplier_id AND products.id = order_items.product_id AND orders.id = order_items.order_id;)
 
 cyf_ecommerce=# SELECT c.name, o.order_reference, o.order_date, p.product_name, s.supplier_name, oi.quantity 
 cyf_ecommerce-# FROM customers c INNER JOIN orders o ON c.id=o.customer_id
