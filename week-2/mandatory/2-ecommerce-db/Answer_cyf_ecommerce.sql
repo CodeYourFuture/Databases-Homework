@@ -222,6 +222,47 @@ cyf_ecommerce=# SELECT products.product_name, products.unit_price, order_items.q
 
 cyf_ecommerce=# SELECT orders.order_date, orders.order_reference, customers.name, suppliers.supplier_name, order_items.quantity FROM products, orders, order_items, suppliers, customers WHERE customers.id = orders.customer_id AND suppliers.id = products.supplier_id AND products.id = order_items.product_id AND orders.id = order_items.order_id;
 
+cyf_ecommerce=# SELECT c.name, o.order_reference, o.order_date, p.product_name, s.supplier_name, oi.quantity 
+cyf_ecommerce-# FROM customers c INNER JOIN orders o ON c.id=o.customer_id
+cyf_ecommerce-#  INNER JOIN order_items oi ON oi.order_id=o.id
+cyf_ecommerce-#  INNER JOIN products p ON oi.product_id=p.id
+cyf_ecommerce-#  INNER JOIN suppliers s ON s.id=p.supplier_id;
+
+        name        | order_reference | order_date |      product_name       | supplier_name | quantity 
+--------------------+-----------------+------------+-------------------------+---------------+----------
+ Guy Crawford       | ORD001          | 2019-06-01 | Tee Shirt Olympic Games | Taobao        |        1
+ Guy Crawford       | ORD001          | 2019-06-01 | Super warm socks        | Taobao        |        5
+ Guy Crawford       | ORD002          | 2019-07-15 | Super warm socks        | Argos         |        4
+ Guy Crawford       | ORD002          | 2019-07-15 | Le Petit Prince         | Sainsburys    |        1
+ Guy Crawford       | ORD003          | 2019-07-11 | Coffee Cup              | Argos         |       10
+ Guy Crawford       | ORD003          | 2019-07-11 | Ball                    | Taobao        |        2
+ Hope Crosby        | ORD004          | 2019-05-24 | Mobile Phone X          | Amazon        |        1
+ Britanney Kirkland | ORD005          | 2019-05-30 | Javascript Book         | Argos         |        2
+ Britanney Kirkland | ORD005          | 2019-05-30 | Le Petit Prince         | Amazon        |        1
+ Amber Tran         | ORD006          | 2019-07-05 | Coffee Cup              | Taobao        |        3
+ Amber Tran         | ORD006          | 2019-07-05 | Javascript Book         | Taobao        |        1
+ Amber Tran         | ORD006          | 2019-07-05 | Le Petit Prince         | Sainsburys    |        1
+ Amber Tran         | ORD006          | 2019-07-05 | Super warm socks        | Sainsburys    |        3
+ Amber Tran         | ORD007          | 2019-04-05 | Super warm socks        | Argos         |       15
+ Edan Higgins       | ORD008          | 2019-07-23 | Tee Shirt Olympic Games | Amazon        |        1
+ Edan Higgins       | ORD008          | 2019-07-23 | Mobile Phone X          | Sainsburys    |        1
+ Edan Higgins       | ORD009          | 2019-07-24 | Ball                    | Sainsburys    |        2
+ Edan Higgins       | ORD010          | 2019-05-10 | Ball                    | Taobao        |        1
+ Edan Higgins       | ORD010          | 2019-05-10 | Super warm socks        | Amazon        |        5
+(19 rows)
+
+cyf_ecommerce=# SELECT DISTINCT c.name FROM customers c INNER JOIN orders o ON o.customer_id=c.id 
+cyf_ecommerce-# INNER JOIN order_items oi ON oi.order_id=o.id
+cyf_ecommerce-# INNER JOIN products p ON oi.product_id=p.id
+cyf_ecommerce-# INNER JOIN suppliers s ON s.id=p.supplier_id
+cyf_ecommerce-# WHERE s.country='China';
+
+     name     
+--------------
+ Amber Tran
+ Edan Higgins
+ Guy Crawford
+(3 rows)
 
 
 
