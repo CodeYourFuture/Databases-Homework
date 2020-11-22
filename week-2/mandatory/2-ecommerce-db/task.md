@@ -23,7 +23,8 @@ When you have finished all of the questions - open a pull request with your answ
 To prepare your environment for this homework, open a terminal and create a new database called `cyf_ecommerce`:
 
 ```sql
-createdb cyf_ecommerce
+//createdb cyf_ecommerce
+createdb -p 5432 -U postgres cyf_ecommerce
 ```
 
 Import the file [`cyf_ecommerce.sql`](./cyf_ecommerce.sql) in your newly created database:
