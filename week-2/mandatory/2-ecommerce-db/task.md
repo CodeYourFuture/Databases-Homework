@@ -9,8 +9,11 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+//Database for students
+createdb -p 5432 -U postgres students
 
-
+//Database for mentors
+createdb -p 5432 -U postgres students
 ```
 
 When you have finished all of the questions - open a pull request with your answers to the `Databases-Homework` repository.
