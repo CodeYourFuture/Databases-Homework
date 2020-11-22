@@ -2,8 +2,10 @@
   "name": "cyf-ecommerce-api",
   "version": "1.0.0",
   "description": "This is a node.js app with SQL database connection",
-  "main": "index.js",
+  "main": "server.js",
+
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ekip Kalir",

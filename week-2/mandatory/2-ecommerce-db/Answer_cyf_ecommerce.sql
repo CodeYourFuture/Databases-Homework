@@ -37,7 +37,8 @@ cyf_ecommerce=# SELECT *FROM suppliers;
 cyf_ecommerce=# SELECT *FROM orders;
  id | order_date | order_reference | customer_id 
 ----+------------+-----------------+-------------
-  1 | 2019-06-01 | ORD001          |           1  2 | 2019-07-15 | ORD002          |           1
+  1 | 2019-06-01 | ORD001          |           1 
+  2 | 2019-07-15 | ORD002          |           1
   3 | 2019-07-11 | ORD003          |           1
   4 | 2019-05-24 | ORD004          |           2
   5 | 2019-05-30 | ORD005          |           3
@@ -219,7 +220,7 @@ cyf_ecommerce=# SELECT products.product_name, products.unit_price, order_items.q
  Super warm socks |         10 |        3
 (4 rows)
 
-cyf_ecommerce=# SELECT orders.order_date, orders.order_reference, customers.name, suppliers.supplier_name, orders_items.quantity FROM orders, order_items, products INNER JOIN customers ON customers.id = orders.customer_id INNER JOIN suppliers ON suppliers.id = products.supplier_id INNER JOIN order_items ON products.id = order_items.product_id AND orders.id = order_items.order_id;
+cyf_ecommerce=# SELECT orders.order_date, orders.order_reference, customers.name, suppliers.supplier_name, order_items.quantity FROM products, orders, order_items, suppliers, customers WHERE customers.id = orders.customer_id AND suppliers.id = products.supplier_id AND products.id = order_items.product_id AND orders.id = order_items.order_id;
 
 
 

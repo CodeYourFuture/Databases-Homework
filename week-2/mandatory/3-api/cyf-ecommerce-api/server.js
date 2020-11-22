@@ -11,8 +11,8 @@ const pool = new Pool({
     port: 5432
 });
 
-app.get("/hotels", function(req, res) {
-    pool.query('SELECT * FROM hotels', (error, result) => {
+app.get("/customers", function(req, res) {
+    pool.query('SELECT * FROM customers', (error, result) => {
         res.json(result.rows);
     });
 });
