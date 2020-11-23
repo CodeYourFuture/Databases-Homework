@@ -8,6 +8,17 @@ To submit this homework write the correct commands for each question here:
 
 ```sql
 
+// 
+1) Retrieve all the mentors who lived more than 5 years in Glasgow
+=> SELECT * FROM mentors WHERE years_of_stay_in_glasgow > 5;
+2) Retrieve all the mentors whose favourite language is Javascript
+=> SELECT * FROM mentors WHERE favorite_programming_language ='Javascript';
+3) Retrieve all the students who are CYF graduates
+=> SELECT * FROM students WHERE graduated='t';
+4) Retrieve all the classes taught before June this year
+=> SELECT * FROM classes WHERE date < '2020-6-1';
+5)  SELECT classes.topic, students.id FROM classes, students WHERE students.id=classes.id AND classes.topic='JavaScript'; 
+
 
 ```
 
