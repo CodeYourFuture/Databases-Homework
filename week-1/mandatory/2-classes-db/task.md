@@ -8,7 +8,7 @@ To submit this homework write the correct commands for each question here:
 
 ```sql
 
-// 
+// Commands for the week one homework
 1) Retrieve all the mentors who lived more than 5 years in Glasgow
 => SELECT * FROM mentors WHERE years_of_stay_in_glasgow > 5;
 2) Retrieve all the mentors whose favourite language is Javascript
