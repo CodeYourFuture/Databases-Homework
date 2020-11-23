@@ -8,6 +8,17 @@ To submit this homework write the correct commands for each question here:
 
 ```sql
 
+// Commands for the week one homework
+1) Retrieve all the mentors who lived more than 5 years in Glasgow
+=> SELECT * FROM mentors WHERE years_of_stay_in_glasgow > 5;
+2) Retrieve all the mentors whose favourite language is Javascript
+=> SELECT * FROM mentors WHERE favorite_programming_language ='Javascript';
+3) Retrieve all the students who are CYF graduates
+=> SELECT * FROM students WHERE graduated='t';
+4) Retrieve all the classes taught before June this year
+=> SELECT * FROM classes WHERE date < '2020-6-1';
+5)  SELECT classes.topic, students.id FROM classes, students WHERE students.id=classes.id AND classes.topic='JavaScript'; 
+
 
 ```
 
@@ -16,7 +27,7 @@ When you have finished all of the questions - open a pull request with your answ
 ## Task
 
 1. Create a new database called `cyf_classes` (hint: use `createdb` in the terminal)
-2. Create a new table `mentors`, for each mentor we want to save their name, how many years they lived in Glasgow, their address and their favourite programming language.
+2. Create a new table `mentors`, for each mentor we want to save their name, how many years they lived in Glasgow, their address and their favorite programming language.
 3. Insert 5 mentors in the `mentors` table (you can make up the data, it doesn't need to be accurate ;-)).
 4. Create a new table `students`, for each student we want to save their name, address and if they have graduated from Code Your Future.
 5. Insert 10 students in the `students` table.
