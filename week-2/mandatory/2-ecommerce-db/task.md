@@ -9,7 +9,59 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+-- 1
+SELECT name, address FROM customers WHERE country = 'United States';
 
+-- 2
+SELECT * FROM customers ORDER BY name ASC;
+
+-- 3
+SELECT * FROM products WHERE unit_price > 100;
+
+-- 4
+SELECT * FROM products WHERE product_name LIKE '%socks%';
+
+-- 5
+SELECT * FROM products ORDER BY unit_price DESC LIMIT 5;
+
+-- 6
+SELECT p.product_name, p.unit_price, s.supplier_name
+FROM products p
+INNER JOIN suppliers s ON p.supplier_id = s.id;
+
+---7
+SELECT p.product_name, s.supplier_name
+FROM products p
+INNER JOIN suppliers s ON p.supplier_id = s.id
+WHERE s.country = 'United Kingdom';
+
+-- 8
+SELECT * FROM orders WHERE customer_id = 1;
+
+-- 9
+SELECT * FROM orders INNER JOIN customers ON customers.id = orders.customer_id WHERE customers.name = 'Hope Crosby';
+
+-- 10
+SELECT p.product_name, p.unit_price, oi.quantity FROM products p INNER JOIN order_items oi ON p.id = oi.product_id
+INNER JOIN orders o ON o.id = oi.order_id
+WHERE o.order_reference = 'ORD006';
+
+-- 11
+SELECT c.name, o.order_reference, o.order_date, p.product_name, s.supplier_name, oi.quantity
+FROM customers c
+INNER JOIN orders o ON c.id = o.customer_id
+INNER JOIN order_items oi ON o.id = oi.order_id
+INNER JOIN products p ON p.id = oi.product_id
+INNER JOIN suppliers s ON s.id = p.supplier_id;
+
+-- 12
+SELECT c.name
+FROM customers c
+INNER JOIN orders o ON c.id = o.customer_id
+INNER JOIN order_items oi ON o.id = oi.order_id
+INNER JOIN products p ON p.id = oi.product_id
+INNER JOIN suppliers s ON s.id = p.supplier_id
+WHERE s.country = 'China';
 
 ```
 
