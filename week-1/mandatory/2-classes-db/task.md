@@ -7,6 +7,83 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+createdb cyf_classes;
+(enter password)
+
+psql cyf_classes;
+(enter password)
+
+CREATE TABLE mentors (
+  id        SERIAL PRIMARY KEY,
+  name      VARCHAR(30) NOT NULL,
+  years_lived_in_glasgow INT,
+  address   VARCHAR(120),
+  city      VARCHAR(30),
+  postcode  VARCHAR(12),
+  country   VARCHAR(20),
+  favourite_programming_language VARCHAR(30)
+);
+
+INSERT INTO mentors (name, years_lived_in_glasgow, address, city, postcode, country, favourite_programming_language) VALUES ('John Smith',5,'11 New Road','Liverpool','L10 2AB','UK', 'Javascript');
+INSERT INTO mentors (name, years_lived_in_glasgow, address, city, postcode, country, favourite_programming_language) VALUES ('Dave Smith',10,'11 New Road','Liverpool','L10 2AB','UK', 'SQL');
+INSERT INTO mentors (name, years_lived_in_glasgow, address, city, postcode, country, favourite_programming_language) VALUES ('Sally Smith',2,'11 New Road','Liverpool','L10 2AB','UK', 'HTML');
+INSERT INTO mentors (name, years_lived_in_glasgow, address, city, postcode, country, favourite_programming_language) VALUES ('Bob Smith',1,'11 New Road','Liverpool','L10 2AB','UK', 'NODEJS');
+INSERT INTO mentors (name, years_lived_in_glasgow, address, city, postcode, country, favourite_programming_language) VALUES ('Sam Smith',3,'11 New Road','Liverpool','L10 2AB','UK', 'SQL');
+
+CREATE TABLE students (
+  id        SERIAL PRIMARY KEY,
+  name      VARCHAR(30) NOT NULL,
+  address   VARCHAR(120),
+  city      VARCHAR(30),
+  postcode  VARCHAR(12),
+  country   VARCHAR(20),
+  graduated BOOLEAN
+);
+
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('John Jones', '11 New Road','Liverpool','L10 2AB','UK', true);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Jack Jones', '11 New Road','Liverpool','L10 2AB','UK', false);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Susan Jones', '11 New Road','Liverpool','L10 2AB','UK', true);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Dave Jones', '11 New Road','Liverpool','L10 2AB','UK', false);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Bob Jones', '11 New Road','Liverpool','L10 2AB','UK', true);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Sue Jones', '11 New Road','Liverpool','L10 2AB','UK', true);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Sally Jones', '11 New Road','Liverpool','L10 2AB','UK', false);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Jim Jones', '11 New Road','Liverpool','L10 2AB','UK', true);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('James Jones', '11 New Road','Liverpool','L10 2AB','UK', true);
+INSERT INTO students (name, address, city, postcode, country, graduated) VALUES ('Dan Jones', '11 New Road','Liverpool','L10 2AB','UK', false);
+
+SELECT * FROM mentors;
+SELECT * FROM students;
+
+CREATE TABLE classes (
+ id        SERIAL PRIMARY KEY,
+ mentor INT REFERENCES mentors(id),
+ topic VARCHAR(30),
+ date DATE,
+ location VARCHAR(30)
+);
+
+INSERT INTO classes (mentor, topic, date, location) VALUES (2, 'SQL', '2020-11-14', 'Birmingham');
+INSERT INTO classes (mentor, topic, date, location) VALUES (4, 'HTML', '2020-07-14', 'Birmingham');
+INSERT INTO classes (mentor, topic, date, location) VALUES (5, 'NODEJS', '2020-01-14', 'Birmingham');
+
+CREATE TABLE attendance (
+ id        SERIAL PRIMARY KEY,
+ class INT REFERENCES classes(id),
+ student INT REFERENCES students(id),
+ attended BOOLEAN NOT NULL
+);
+
+INSERT INTO attendance (class, student, attended) VALUES (1, 5,  true);
+INSERT INTO attendance (class, student, attended) VALUES (2, 5,  false);
+INSERT INTO attendance (class, student, attended) VALUES (3, 4,  true);
+
+SELECT name FROM mentors WHERE years_lived_in_glasgow > 5;
+SELECT name FROM mentors WHERE favourite_programming_language = 'Javascript';
+SELECT name FROM students WHERE graduated = true;
+SELECT * FROM classes WHERE date < '2020-06-01';
+
+// attended SQL class
+SELECT student FROM attendance WHERE attended = true and class=1; 
 
 
 ```
