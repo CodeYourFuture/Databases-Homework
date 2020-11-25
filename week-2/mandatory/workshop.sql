@@ -16,7 +16,7 @@ SELECT * FROM suppliers INNER JOIN products ON suppliers.id=products.supplier_id
 
 SELECT product_name,unit_price,supplier_name FROM suppliers INNER JOIN products ON suppliers.id=products.supplier_id;
 
-SELECT product_name FROM suppliers INNER JOIN products ON suppliers.id=products.supplier_id WHERE country = 'United Kingdom';
+SELECT product_name,supplier_name FROM suppliers INNER JOIN products ON suppliers.id=products.supplier_id;
 
 SELECT * FROM customers INNER JOIN orders ON customers.id=orders.customer_id WHERE customers.id=1;
 
