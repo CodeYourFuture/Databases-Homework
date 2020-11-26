@@ -196,17 +196,10 @@ Que7. SELECT product_name, supplier_name  FROM products, suppliers WHERE product
  q9. SELECT * FROM orders, customers WHERE orders.customer_id = customers.id AND customers.name = 'Hope Crosby';
 
  cyf_ecommerce=# SELECT customers.name,order_reference,order_date,product_name,supplier_name,quantity FROM customers,suppliers,orders,products,order_items WHERE order_items.order_id=orders.id AND order_items.product_id=products.id AND customers.id=orders.customer_id AND suppliers.id=products.id;
-     name     | order_reference | order_date |      product_name       | supplier_name | quantity 
---------------+-----------------+------------+-------------------------+---------------+----------
- Guy Crawford | ORD001          | 2019-06-01 | Tee Shirt Olympic Games | Taobao        |        1
- Hope Crosby  | ORD004          | 2019-05-24 | Mobile Phone X          | Sainsburys    |        1
- Edan Higgins | ORD008          | 2019-07-23 | Tee Shirt Olympic Games | Amazon        |        1
-(3 rows)
 
-cyf_ecommerce=# SELECT customers.name  FROM customers,suppliers,orders,products,order_items WHERE order_items.order_id=orders.id AND order_items.product_id=products.id AND customers.id=orders.customer_id AND suppliers.id=products.id WHERE suppliers.country='China';
-ERROR:  syntax error at or near "WHERE"
-LINE 1: ...d=orders.customer_id AND suppliers.id=products.id WHERE supp...
-                                                             ^
+SELECT * FROM products,orders,order_items WHERE order_items.order_id=orders.id AND order_items.product_id=products.id AND orders.order_reference='ORD006';
+
+                                          ^
 cyf_ecommerce=# SELECT customers.name  FROM customers,suppliers,orders,products,order_items WHERE order_items.order_id=orders.id AND order_items.product_id=products.id AND customers.id=orders.customer_id AND suppliers.id=products.id AND  suppliers.country='China';
      name     
 --------------
