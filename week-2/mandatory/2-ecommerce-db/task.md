@@ -10,6 +10,18 @@ To submit this homework write the correct commands for each question here:
 
 ```sql
 
+SELECT name , address FROM customers WHERE country='United States';
+SELECT * FROM customers ORDER BY name ASC;
+SELECT * FROM products WHERE unit_price >100;
+SELECT * FROM products WHERE product_name LIKE '%socks%';
+SELECT * FROM products ORDER BY unit_price DESC LIMIT 5;
+SELECT products.product_name, products.unit_price ,supplier_name FROM products INNER JOIN  suppliers ON products.supplier_id = suppliers.id;
+SELECT products.product_name, supplier_name FROM products INNER JOIN  suppliers ON products.supplier_id = suppliers.id WHERE suppliers.country= 'United Kingdom';
+SELECT * FROM orders WHERE customer_id =1;
+SELECT order_date,order_reference ,name FROM orders INNER JOIN  customers ON orders.customer_id=customerSELECT products.product_name, products.unit_price , order_items.quantity FROM products INNER JOIN order_items ON order_items.product_id=products.id INNER JOIN orders ON order_items.order_id= orders.id WHERE order_reference='ORD006';s.id WHERE customers.name='Hope Crosby';
+SELECT  customers.name , orders.order_reference, orders.order_date, products.product_name, suppliers.supplier_name ,order_items.quantity FROM customers INNER JOIN orders ON orders.customer_id=customers.id INNER JOIN order_items ON orders.id= order_items.order_id INNER JOIN products ON products.id= order_items.product_id INNER JOIN suppliers ON suppliers.id= products.supplier_id;
+SELECT DISTINCT customers.name  FROM customers INNER JOIN orders ON orders.customer_id=customers.id INNER JOIN order_items ON orders.id= order_items.order_id INNER JOIN products ON products.id= order_items.product_id INNER JOIN suppliers ON suppliers.id= products.supplier_id WHERE suppliers.country='China';
+
 
 ```
 
