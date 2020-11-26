@@ -6,11 +6,31 @@ In this homework, you are going to work with an ecommerce database. In this data
 
 Below you will find a set of tasks for you to complete to set up a databases of students and mentors.
 
-To submit this homework write the correct commands for each question here:
+To submit this homework write the correct commands for each question here: 11. Retrieve all the products with their supplier for all orders of all customers. The result should only contain the columns `name` (from customer), `order_reference` `order_date`, `product_name`, `supplier_name` and `quantity`. 12. Retrieve the names of all customers who bought a product from a supplier from China.
 
 ```sql
-
-
+1.  SELECT name, address FROM customers WHERE country = 'United States';
+2.  SELECT * FROM customers ORDER BY name;
+3.  SELECT * FROM products WHERE unit_price > 100;
+4.  SELECT * FROM products WHERE product_name LIKE '%socks%';
+5.  SELECT * FROM products ORDER BY unit_price DESC LIMIT 5;
+6.  SELECT p.product_name, s.supplier_name FROM products p, suppliers s WHERE s.id = p.supplier_id;
+7.  SELECT p.product_name, s.supplier_name, s.country FROM products p, suppliers s WHERE s.id = p.supplier_id
+    AND s.country = 'United Kingdom';
+8.  SELECT * FROM orders WHERE customer_id = 1;
+9.  SELECT * FROM orders o, customers c WHERE c.id = o.customer_id AND c.name = 'Hope Crosby';
+10. SELECT p.product_name,p.unit_price,oi.quantity
+    FROM products p, orders o, order_items oi
+    WHERE p.id=oi.product_id
+    AND o.id=oi.order_id
+    AND o.order_reference = 'ORD006';
+11. SELECT c.name, o.order_reference, o.order_date,p.product_name,s.supplier_name,oi.quantity
+    FROM customers c, products p, suppliers s, orders o, order_items oi
+    WHERE c.id=o.customer_id AND o.id=oi.order_id AND oi.product_id=p.id AND s.id=p.supplier_id;
+12. SELECT c.name, p.product_name, s.country
+    FROM customers c, orders o, products p, suppliers s,order_items oi
+    WHERE c.id=o.customer_id AND o.id=oi.order_id AND oi.product_id=p.id AND s.id=p.supplier_id
+    AND s.country='China';
 ```
 
 When you have finished all of the questions - open a pull request with your answers to the `Databases-Homework` repository.
