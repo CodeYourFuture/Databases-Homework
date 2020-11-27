@@ -9,7 +9,34 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+/* Creating the database. */
+A- CREATEDB cyf_ecommerce
+/* Importing the cyf_ecommerce.sql file to the cyf_ecommerce database.*/
+B- psql -d cyf_ecommerce -f cyf_ecommerce.sql
+Tasks to do?
+1- SELECT * FROM customers WHERE country = 'United States';
 
+2- SELECT * FROM customers BY name;
+
+3- SELECT product_name FROM products WHERE unit_price > 100;
+
+4- SELECT * FROM products WHERE product_name LIKE '%socks%';
+
+5- SELECT product_name, unit_price FROM products ORDER BY unit_price DESC,        product_name ASC LIMIT 5;
+
+6- SELECT product_name, unit_price, suppliers.supplier_name FROM products INNER JOIN suppliers ON products.id = suppliers.id;
+
+7- SELECT product_name, suppliers.supplier_name FROM products INNER JOIN suppliers ON products.id = suppliers.id WHERE suppliers.country = 'United Kingdom';
+
+8- SELECT * FROM orders WHERE customers_id = 1;
+
+9- SELECT order_reference, customers.name FROM orders INNER JOIN customers ON orders.id = customers.id WHERE customers.name = 'Hope Crosby';
+
+10- SELECT product_name, unit_price, order_items.quantity FROM order_items INNER JOIn products ON order_items.product_id = products.id INNER JOIN orders ON order_items.order_id = orders.id WHERE orders.order_reference = 'ORD006';
+
+11- SELECT customers.name, orders.order_reference, orders.order_date, products.product_name, suppliers.supplier_name, order_items.quantity FROM customers, products, suppliers, orders, order_items WHERE customers.id = orders.customer_id AND orders.id = order_items.order_id AND order_items.product_id = products.id AND suppliers.id = products.supplier_id;
+
+12- SELECT customers.name, products.product_name, suppliers.country FROM customers, orders, products, suppliers, order_items WHERE customers.id = orders.customer_id AND orders.id = order_items.order_id AND order_items.product_id = products.id AND suppliers.id = products.supplier_id;
 
 ```
 
