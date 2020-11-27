@@ -9,6 +9,36 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+1. SELECT name, address FROM customers WHERE country = 'United States';
+2. SELECT * from customers ORDER BY name ASC;
+3. SELECT * FROM products WHERE unit_price > 100;
+4. SELECT * FROM products WHERE product_name like '%socks';
+5. SELECT * FROM products ORDER BY unit_price DESC LIMIT 5;
+6. SELECT product_name, unit_price, suppliers.supplier_name
+    FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.id;
+7. SELECT product_name, suppliers.supplier_name
+    FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.id
+    WHERE country = 'United Kingdom';
+8. SELECT * FROM orders WHERE customer_id = 1;
+9. SELECT * FROM orders
+    INNER JOIN customers ON orders.customer_id = customers.id
+    WHERE name = 'Hope Crosby';
+10. SELECT product_name, unit_price, quantity from orders
+      INNER JOIN order_items ON orders.id = order_items.order_id
+      INNER JOIN products ON order_items.product_id = products.id
+      WHERE order_reference like '%006';
+11. SELECT customers.name, order_reference, order_date, product_name, supplier_name, quantity
+        FROM customers
+        INNER JOIN orders ON customers.id = orders.customer_id
+        INNER JOIN order_items ON orders.id = order_items.order_id
+        INNER JOIN products ON products.id = order_items.product_id
+        INNER JOIN suppliers ON suppliers.id = products.supplier_id;
+12.  FROM customers
+        INNER JOIN orders ON customers.id = orders.customer_id
+        INNER JOIN order_items ON orders.id = order_items.order_id
+        INNER JOIN products ON products.id = order_items.product_id
+        INNER JOIN suppliers ON suppliers.id = products.supplier_id
+        WHERE suppliers.country = 'China';
 
 
 ```
@@ -47,3 +77,6 @@ Once you understand the database that you are going to work with, solve the foll
 10. Retrieve all the products in the order `ORD006`. The result should only contain the columns `product_name`, `unit_price` and `quantity`.
 11. Retrieve all the products with their supplier for all orders of all customers. The result should only contain the columns `name` (from customer), `order_reference` `order_date`, `product_name`, `supplier_name` and `quantity`.
 12. Retrieve the names of all customers who bought a product from a supplier from China.
+
+
+
