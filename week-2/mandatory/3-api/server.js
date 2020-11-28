@@ -2,16 +2,13 @@ const express = require(`express`);
 const app = express();
 const port = 3000;
 
-/* I wasn't able to run the server because I couldn't access the postgres database on my computer,
- however I written the code that I think would run if I was able to access it. */
-
 const { Pool } = require(`pg`);
 
 const pool = new Pool({
     user: `postgres`,
     host: `localhost`,
     database: `cyf_ecommerce`,
-    password: ``,
+    password: `qwerty`,
     port: 5432
 });
 
