@@ -9,7 +9,18 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
-
+1.select name,address from customers where country='United States';
+2.select * from customers order by name;
+3.select * from products where unit_price>100;
+4.select * from products where product_name like 'socks';
+5.select * from products order by unit_price desc limit 5;
+6.select products.product_name,products.unit_price,suppliers.supplier_name from products,suppliers where suppliers.id=products.supplier_id;
+7.select products.product_name,suppliers.supplier_name from products,suppliers where products.supplier_id=suppliers.id and suppliers.country='United Kingdom';
+8.select *  from orders where customer_id=1;
+9.select * from orders where customer_id=(select id from customers where name='Hope Crosby');
+10.select products.product_name,products.unit_price,order_items.quantity from products inner join order_items on products.id=order_items.product_id inner join orders on order_items.order_id=orders.id;
+11.select customers.name,orders.order_reference,orders.order_date,products.product_name,suppliers.supplier_name,order_items.quantity from customers inner join orders on customers.id=orders.customer_id inner join order_items on orders.id=order_items.order_id inner join products on order_items.product_id=products.id inner join suppliers on products.supplier_id=suppliers.id;
+12.select customers.name from customers inner join orders on customers.id=orders.customer_id inner join order_items on orders.id=order_items.order_id  inner join products on order_items.product_id=products.id inner join suppliers on products.supplier_id=suppliers.id where suppliers.country='China';
 
 ```
 
