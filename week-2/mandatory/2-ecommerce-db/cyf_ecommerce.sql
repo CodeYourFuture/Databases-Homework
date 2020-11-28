@@ -103,3 +103,32 @@ INSERT INTO order_items (order_id, product_id, quantity) VALUES(8, 5, 1);
 INSERT INTO order_items (order_id, product_id, quantity) VALUES(9, 13, 2);
 INSERT INTO order_items (order_id, product_id, quantity) VALUES(10, 14, 1);
 INSERT INTO order_items (order_id, product_id, quantity) VALUES(10, 6, 5);
+
+
+3. Retrieve all the products which cost more than 100
+SELECT * FROM products WHERE unit_price > 100;
+4. Retrieve all the products whose name contains the word `socks`
+SELECT * FROM products WHERE product_name LIKE '%socks%';
+5. Retrieve the 5 most expensive products
+SELECT * FROM products ORDER BY unit_price DESC LIMIT 5;
+6. Retrieve all the products with their corresponding suppliers. The result should only contain the columns `product_name`, `unit_price` and `supplier_name`
+SELECT product_name, unit_price, supplier_name FROM products, suppliers WHERE products.supplier_id = suppliers.id;
+SELECT product_name, unit_price, supplier_name FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.id;
+SELECT products.product_name, products.unit_price, suppliers.supplier_name FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.id;
+SELECT p.product_name product, p.unit_price price, s.supplier_name supplier FROM products p INNER JOIN suppliers s ON p.supplier_id = s.id;
+7. Retrieve all the products sold by suppliers based in the United Kingdom. The result should only contain the columns `product_name` and `supplier_name`.
+SELECT p.product_name product, s.supplier_name supplier FROM products p INNER JOIN suppliers s ON p.supplier_id = s.id AND s.country ='United Kingdom';
+8. Retrieve all orders from customer ID `1`
+SELECT order_reference FROM orders WHERE customer_id = 1;
+9. Retrieve all orders from customer named `Hope Crosby`
+SELECT order_reference FROM orders, customers WHERE orders.customer_id = customers.id AND customers.name ='Hope Crosby';
+SELECT order_reference FROM orders INNER JOIN customers on orders.customer_id = customers.id AND customers.name = 'Hope Crosby';
+10. Retrieve all the products in the order `ORD006`. The result should only contain the columns `product_name`, `unit_price` and `quantity`.
+SELECT product_name, unit_price, quantity FROM orders, products, order_items WHERE order_items.order_id = orders.id AND order_items.product_id = products.id AND orders.order_reference = 'ORD006';
+SELECT product_name, unit_price, quantity FROM orders INNER JOIN order_items ON order_items.order_id = orders.id INNER JOIN products ON order_items.product_id = products.id  WHERE orders.order_reference = 'ORD006';
+11. Retrieve all the products with their supplier for all orders of all customers. The result should only contain the columns `name` (from customer), `order_reference` `order_date`, `product_name`, `supplier_name` and `quantity`.
+SELECT name, order_reference,order_date, product_name, supplier_name, quantity FROM customers, products, suppliers, order_items, orders WHERE customers.id = orders.customer_id AND orders.id = order_items.order_id AND order_items.product_id = products.id AND products.supplier_id = suppliers.id; 
+SELECT name, order_reference,order_date, product_name, supplier_name, quantity FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN order_items ON orders.id = order_items.order_id INNER JOIN products ON order_items.product_id = products.id INNER JOIN suppliers ON products.supplier_id = suppliers.id; 
+12. Retrieve the names of all customers who bought a product from a supplier from China.
+SELECT name, order_reference,order_date, product_name, supplier_name, quantity FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN order_items ON orders.id = order_items.order_id INNER JOIN products ON order_items.product_id = products.id INNER JOIN suppliers ON products.supplier_id = suppliers.id AND suppliers.country = 'China';
+SELECT DISTINCT name FROM customers INNER JOIN orders ON customers.id = orders.customer_id INNER JOIN order_items ON orders.id = order_items.order_id INNER JOIN products ON order_items.product_id = products.id INNER JOIN suppliers ON products.supplier_id = suppliers.id AND suppliers.country = 'China';
