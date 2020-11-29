@@ -9,6 +9,18 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+1. SELECT name, address FROM customers WHERE country = 'United States';
+2. SELECT * FROM customers ORDER BY name;
+3. SELECT * FROM products WHERE unit_price > 100;
+4. SELECT * FROM products WHERE product_name LIKE '%socks%';
+5. SELECT * FROM products ORDER BY unit_price DESC LIMIT 5;
+6. SELECT product_name, unit_price, supplier_name FROM products INNER JOIN suppliers ON suppliers.id = products.supplier_id;
+7. SELECT product_name, supplier_name FROM products INNER JOIN suppliers ON suppliers.country = 'United Kingdom';
+8. SELECT * FROM orders WHERE customer_id = 1;
+9. SELECT * FROM orders INNER JOIN customers ON customers.id = orders.customer_id WHERE customers.name = 'Hope Crosby';
+10. SELECT product_name, unit_price, quantity FROM order_items INNER JOIN products ON products.id = order_items.product_id INNER  JOIn orders ON orders.id = order_items.order_id WHERE orders.order_reference = 'ORD006';
+11. SELECT customers.name, orders.order_reference, orders.order_date, products.product_name, suppliers.supplier_name ,order_items.quantity FROM customers INNER JOIN orders ON orders.customer_id=customers.id INNER JOIN order_items ON orders.id= order_items.order_id INNER JOIN products ON order_items.product_id = products.id INNER JOIN suppliers ON suppliers.id= products.supplier_id;
+12 .SELECT DISTINCT customers.name FROM customers, products, suppliers, orders ,order_items WHERE customers.id = orders.customer_id AND orders.id = order_items.order_id AND order_items.product_id = products.id AND suppliers.id = products.supplier_id AND suppliers.country='China';
 
 
 ```
