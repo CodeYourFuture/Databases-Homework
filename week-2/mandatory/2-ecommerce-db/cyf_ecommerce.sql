@@ -114,3 +114,5 @@ SELECT product_name,supplier_name FROM suppliers  INNER JOIN products ON supplie
 SELECT * FROM orders INNER JOIN customers on customers.id = orders.id;
 SELECT * FROM orders INNER JOIN customers on customers.id = orders.id WHERE customers.name = 'Hope Crosby';
 SELECT product_name,unit_price,quantity FROM products INNER JOIN order_items ON order_items.id  = products.id  INNER JOIN  orders  ON orders.id = product_id  WHERE order_reference = 'ORD006';
+SELECT customers.name, orders.order_reference, orders.order_date, products.product_name, suppliers.supplier_name ,order_items.quantity FROM customers INNER JOIN orders ON orders.customer_id=customers.id INNER JOIN order_items ON orders.id= order_items.order_id INNER JOIN products ON order_items.product_id = products.id INNER JOIN suppliers ON suppliers.id= products.supplier_id;
+SELECT DISTINCT customers.name FROM customers, products, suppliers, orders ,order_items WHERE customers.id = orders.customer_id AND orders.id = order_items.order_id AND order_items.product_id = products.id AND suppliers.id = products.supplier_id AND suppliers.country='China';

@@ -81,6 +81,6 @@ Once you understand the database that you are going to work with, solve the foll
 
 11. Retrieve all the products with their supplier for all orders of all customers. The result should only contain the columns `name` (from customer), `order_reference` `order_date`, `product_name`, `supplier_name` and `quantity`.
 
-
+SELECT customers.name, orders.order_reference, orders.order_date, products.product_name, suppliers.supplier_name ,order_items.quantity FROM customers INNER JOIN orders ON orders.customer_id=customers.id INNER JOIN order_items ON orders.id= order_items.order_id INNER JOIN products ON order_items.product_id = products.id INNER JOIN suppliers ON suppliers.id= products.supplier_id;
 
 12. Retrieve the names of all customers who bought a product from a supplier from China.
