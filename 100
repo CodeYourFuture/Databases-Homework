@@ -1,0 +1,1 @@
+SELECT README.md week-1 week-2 week-3 FROM products where unit_price
