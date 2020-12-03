@@ -125,8 +125,7 @@ app.post("/customers/:customerId/orders", function (req, res) {
   const orderItems = req.body.order_items;
   let orderNumber;
   let orderId;
-  const orderDate = new Date().toJSON().split("T")[0];
-  console.log(orderDate);
+  const orderDate = new Date();
 
   //Check if the user with id is present
   pool
