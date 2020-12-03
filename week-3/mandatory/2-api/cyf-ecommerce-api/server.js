@@ -123,8 +123,6 @@ app.get("/customers/:customerId/orders", function (req, res) {
 app.post("/customers/:customerId/orders", function (req, res) {
   const customerId = req.params.customerId;
   const orderItems = req.body.order_items;
-  let orderNumber;
-  let orderId;
   const orderDate = new Date();
 
   //Check if the user with id is present
@@ -154,7 +152,7 @@ app.post("/customers/:customerId/orders", function (req, res) {
         pool
           .query("SELECT MAX(REPLACE(order_reference,'ORD','')) FROM orders")
           .then((result) => {
-            orderNumber = "ORD" + ("00" + (+result.rows[0].max + 1)).slice(-3);
+            const orderNumber = "ORD" + ("00" + (+result.rows[0].max + 1)).slice(-3);
             //Create a new order
             pool
               .query(
