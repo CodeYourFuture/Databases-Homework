@@ -114,7 +114,7 @@ app.post("/customers/:customerId/orders", function (req, res) {
       if (!result.rows.length) {
         return res
           .status(400)
-          .send(`An customer with the id ${customerId} doesn't exists!`);
+          .send(`A customer with the id ${customerId} doesn't exists!`);
       } else {
         //Check if all products are present
         orderItems.forEach((item) => {
