@@ -92,12 +92,33 @@ app.put("/customers/:customerId", function (request, response) {
     .catch((e) => console.error(e));
 });
 
-app.get("/customers/:customerId/orders", function(req,res){
-   const customerId = req.params.customerId;
-   pool.query("SELECT order_reference, order_date, product_name FROM orders INNER JOIN order_items ON orders.id=order_items.order_id INNER JOIN products ON products.id=Order_items.product_id WHERE orders.customer_id=$1",[customerId])
-   .then(result => res.json(result.rows))
-   .catch((e) => console.error(e));
-})
+app.get("/customers/:customerId/orders", function (req, res) {
+  const customerId = req.params.customerId;
+  const orders = [];
+  pool
+    .query(
+      "SELECT order_reference, order_date FROM orders WHERE orders.customer_id=$1",
+      [customerId]
+    )
+    .then((result) =>
+      result.rows.map((order) => {
+        pool
+          .query(
+            "SELECT p.product_name, p.unit_price, s.supplier_name, oi.quantity" +
+              " FROM orders o INNER JOIN order_items oi ON o.id=oi.order_id INNER JOIN products p ON p.id=oi.product_id " +
+              "INNER JOIN suppliers s ON p.supplier_id=s.id WHERE o.order_reference=$1",
+            [order.order_reference]
+          )
+          .then((lines) => {
+            order.items = lines.rows;
+            orders.push(order);
+          })
+          .catch((e) => console.error(e));
+      })
+    )
+    .catch((e) => console.error(e));
+  setTimeout(() => res.json(orders), 1000);
+});
 
 app.post("/customers/:customerId/orders", function (req, res) {
   const customerId = req.params.customerId;
@@ -153,17 +174,16 @@ app.post("/customers/:customerId/orders", function (req, res) {
                           "INSERT INTO order_items (order_id, product_id, quantity) VALUES ($1, $2, $3)",
                           [result.rows[0].id, item.product_id, item.quantity]
                         )
-                        .then(() => res.send(`Order ${orderNumber} created.`))
                         .catch((e) => console.error(e))
                     )
                   )
+                  .then(() => res.send(`Order ${orderNumber} created.`))
+                  .catch((e) => console.error(e))
               )
               .catch((e) => console.error(e));
           })
 
           .catch((e) => console.error(e));
-
-        
       }
     });
 });
@@ -226,20 +246,24 @@ app.delete("/orders/:orderId", function (req, res) {
     .catch((e) => console.error(e));
 });
 
-app.delete("/customers/:customerId", function(req,res){
+app.delete("/customers/:customerId", function (req, res) {
   const customerId = req.params.customerId;
-pool.query("SELECT * FROM orders WHERE customer_id=$1",[customerId])
-.then(result => {
- if(result.rowCount){
-   res.send(`Can't delete customer with Id ${customerId} due to open orders.`)
- } else {
-   pool.query("DELETE FROM customers WHERE id=$1",[customerId])
-   .then(() => res.send("Success!"))
-   .catch((e) => console.error(e));
- }
-})
-.catch((e) => console.error(e));
-})
+  pool
+    .query("SELECT * FROM orders WHERE customer_id=$1", [customerId])
+    .then((result) => {
+      if (result.rowCount) {
+        res.send(
+          `Can't delete customer with Id ${customerId} due to open orders.`
+        );
+      } else {
+        pool
+          .query("DELETE FROM customers WHERE id=$1", [customerId])
+          .then(() => res.send("Success!"))
+          .catch((e) => console.error(e));
+      }
+    })
+    .catch((e) => console.error(e));
+});
 
 app.listen(3000, function () {
   console.log("Server is listening on port 3000. Ready to accept requests!");
