@@ -16,6 +16,9 @@ When you have finished all of the questions - open a pull request with your answ
 ## Task
 
 1. Create a new database called `cyf_classes` (hint: use `createdb` in the terminal)
+
+select name,address from customers where country='United States';
+
 2. Create a new table `mentors`, for each mentor we want to save their name, how many years they lived in Glasgow, their address and their favourite programming language.
 3. Insert 5 mentors in the `mentors` table (you can make up the data, it doesn't need to be accurate ;-)).
 4. Create a new table `students`, for each student we want to save their name, address and if they have graduated from Code Your Future.
@@ -31,7 +34,12 @@ When you have finished all of the questions - open a pull request with your answ
 9. We now want to store who among the students attends a specific class. How would you store that? Come up with a solution and insert some data if you model this as a new table.
 10. Answer the following questions using a `select` SQL statement:
     - Retrieve all the mentors who lived more than 5 years in Glasgow
+    <!-- Insert command in the terminal: SELECT * FROM mentors WHERE years_of_stay_in_glasgow > 2; -->
     - Retrieve all the mentors whose favourite language is Javascript
+    <!-- Insert command in the terminal: SELECT * FROM mentors WHERE favorite_programming_language = 'JavaScript'; -->
     - Retrieve all the students who are CYF graduates
+    <!-- Insert command in the terminal: SELECT * FROM students WHERE graduated = 't'; -->
     - Retrieve all the classes taught before June this year
+    <!-- Insert command in the terminal: SELECT * FROM classes WHERE date < '2020-06-01'; -->
     - Retrieve all the students (retrieving student ids only is fine) who attended the Javascript class (or any other class that you have in the `classes` table).
+    <!-- Insert command in the terminal: SELECT classes.topic, students.id FROM classes, students WHERE students.id = classes.id AND classes.topic = 'JavaScript'; -->
