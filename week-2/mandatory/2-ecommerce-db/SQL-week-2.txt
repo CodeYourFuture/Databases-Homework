@@ -1,0 +1,33 @@
+1) select name,address from customers where country='United States';
+
+2) select * from customers order by name;
+
+3) select * from products where unit_price>100;
+
+4) select * from products where product_name like '%socks%';
+
+5)
+
+6) select product_name,unit_price,supplier_name from products inner join suppliers on suppliers.id=products.supplier_id;
+
+7) select product_name,supplier_name from products inner join suppliers on suppliers.id=products.supplier_id where suppliers.country='United Kingdom';
+
+8) select order_date,name,city,country from orders inner join customers on customers.id=orders.customer_id where customers.id=1 ;
+
+9) select order_date,name,city,country from orders inner join customers on customers.id=orders.customer_id where customers.name='Hope Crosby' ;
+
+10) select product_name,unit_price, quantity from order_items inner join products on products.id=order_items.product_id where
+order_id=6;
+
+11) select order_reference,order_date,product_name,supplier_name,name, quantity from
+orders inner join order_items on  order_items.order_id=orders.id
+inner join products on products.id=order_items.product_id
+inner join customers on customers.id=orders.customer_id
+inner join suppliers on suppliers.id=products.supplier_id;
+
+12) select supplier_name,name from
+orders inner join order_items on  order_items.order_id=orders.id
+inner join products on products.id=order_items.product_id
+inner join customers on customers.id=orders.customer_id
+inner join suppliers on suppliers.id=products.supplier_id where suppliers.country='China';
+
