@@ -62,7 +62,13 @@ app.get("/orders", function(req, res) {
  app.get("/customers/:customerId", (req, res) =>{
      const customerId = req.params.customerId;
      pool.query('SELECT * FROM customers WHERE id=$1',[customerId])
-     .then((result) =>res.json(result.rows))
+     .then((result) =>{
+         if(result.rowCount ===0){
+             res.status(404).send(`customer ${customerId} does not exist`)
+         }else{
+             res.json(result.rows)
+         }
+    })
      .catch((error) => console.log(error));
  });
  //Add a new POST endpoint `/customers` to create a new customer.
@@ -184,6 +190,24 @@ app.delete('/orders/:orderId', function(req, res){
     })  
 })
 
+
+ //Add a new DELETE endpoint `/customers/:customerId` to delete an existing customer only if this customer doesn't have orders.
+//DELETE
+app.delete('/customers/:customerId', function(req, res){
+    const customerId = req.params.customerId;  
+
+    pool.query('SELECT * FROM orders WHERE customer_id=$1', [customerId])
+    .then((result)=> {   
+       if(result.rowCount >0){
+           res.status(404).send('This customer has existing order, you cannot delete this customer')
+        }else{
+          pool.query('DELETE FROM customers WHERE id=$1', [customerId])
+            .then(()=>res.send(`customer ${customerId} deleted`))
+            .catch((error)=> console.log(error));
+        }  
+    })
+    .catch((error)=>console.log(error))
+});
 //- Add a new GET endpoint `/customers/:customerId/orders` to load all the orders along the items in the orders of a specific customer. Especially, the following information should be returned: order references, order dates, product names, unit prices, suppliers and quantities.
 
 // app.get("customers/:customerId/orders", function(req, res){
