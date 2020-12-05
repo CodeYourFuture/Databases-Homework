@@ -6,10 +6,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 const pool = new Pool({
-  user: "denes",
+  user: "",
   host: "localhost",
   database: "cyf_ecommerce",
-  password: "masina123",
+  password: "",
   port: 5432,
 });
 
