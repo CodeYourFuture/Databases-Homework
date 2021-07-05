@@ -8,10 +8,52 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 
 To submit this homework write the correct commands for each question here:
 
+
 ```sql
 
+SELECT name, address FROM customers WHERE country = 'United States';
 
+SELECT * FROM customers ORDER BY name;
+
+SELECT * FROM products WHERE unit_price > 100;
+
+SELECT * FROM products WHERE product_name LIKE '%socks%';
+
+SELECT * FROM products ORDER BY unit_price DESC LIMIT 5;
+
+SELECT products.product_name, products.unit_price, suppliers.supplier_name FROM products 
+	INNER JOIN suppliers ON products.supplier_id = suppliers.id;
+	
+SELECT products.product_name, suppliers.supplier_name FROM products 
+	INNER JOIN suppliers ON products.supplier_id = suppliers.id 
+	WHERE suppliers.country = 'United Kingdom';
+
+SELECT * FROM orders WHERE customer_id IN (1);
+
+SELECT orders.id, orders.order_date, orders.order_reference, customers.name FROM orders 
+	INNER JOIN customers ON customers.id = orders.customer_id 
+	WHERE customers.name = 'Hope Crosby';
+
+SELECT products.product_name, products.unit_price, order_items.quantity FROM order_items 
+	INNER JOIN orders ON orders.id = order_items.order_id 
+	INNER JOIN products ON products.id = order_items.product_id 
+	WHERE orders.order_reference = 'ORD006'; 
+
+SELECT customers.name, orders.order_reference, orders.order_date, products.product_name, suppliers.supplier_name, order_items.quantity FROM order_items
+	INNER JOIN orders ON orders.id = order_items.order_id
+	INNER JOIN customers ON customers.id = orders.customer_id
+	INNER JOIN products ON products.id = order_items.product_id
+	INNER JOIN suppliers ON suppliers.id = products.supplier_id;
+
+SELECT DISTINCT customers.name FROM order_items
+	INNER JOIN orders ON orders.id = order_items.order_id
+	INNER JOIN customers ON customers.id = orders.customer_id
+	INNER JOIN products ON products.id = order_items.product_id
+	INNER JOIN suppliers ON suppliers.id = products.supplier_id
+	WHERE suppliers.country = 'China';
+	
 ```
+
 
 When you have finished all of the questions - open a pull request with your answers to the `Databases-Homework` repository.
 
