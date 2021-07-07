@@ -7,7 +7,8 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
-
+ANSWERS:
+There are 2 files in the classes-db folder which covers all the answers.
 
 ```
 
